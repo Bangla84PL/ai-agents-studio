@@ -1,0 +1,340 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* SmartCampAI Brand CSS Variables */
+@layer base {
+  :root {
+    /* Backgrounds */
+    --background: transparent;
+    --foreground: #ffffff;
+
+    /* Surfaces (Glass Morphism) */
+    --card: rgba(255, 255, 255, 0.15);
+    --card-foreground: #ffffff;
+
+    /* Interactive Elements */
+    --primary: #ffffff;
+    --primary-foreground: #1f4d2f; /* Dark forest green */
+    --secondary: rgba(255, 255, 255, 0.1);
+    --secondary-foreground: #ffffff;
+
+    /* Muted Elements */
+    --muted: rgba(255, 255, 255, 0.1);
+    --muted-foreground: rgba(255, 255, 255, 0.7);
+
+    /* Accents */
+    --accent: rgba(255, 255, 255, 0.1);
+    --accent-foreground: #ffffff;
+
+    /* Borders & Inputs */
+    --border: rgba(255, 255, 255, 0.2);
+    --input: rgba(255, 255, 255, 0.1);
+    --ring: rgba(255, 255, 255, 0.5);
+
+    /* Semantic Colors */
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --info: #3b82f6;
+
+    /* Design System */
+    --radius: 0.5rem;
+
+    /* Emerald Accent */
+    --emerald-500: #10b981;
+    --emerald-600: #059669;
+
+    /* Forest Green */
+    --forest-green: #1f4d2f;
+  }
+}
+
+/* Global Styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-jost;
+    @apply min-h-screen;
+    @apply antialiased;
+
+    /* Jungle background - fixed attachment for parallax */
+    background-image: url('/jungle background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  /* Typography */
+  h1 {
+    @apply text-4xl font-bold tracking-tight;
+  }
+
+  h2 {
+    @apply text-3xl font-semibold tracking-tight;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold tracking-tight;
+  }
+
+  h4 {
+    @apply text-xl font-semibold;
+  }
+
+  h5 {
+    @apply text-lg font-semibold;
+  }
+
+  h6 {
+    @apply text-base font-semibold;
+  }
+
+  p {
+    @apply text-base text-white/80 leading-relaxed;
+  }
+
+  /* Links */
+  a {
+    @apply text-white hover:text-emerald-500 transition-colors duration-200;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-emerald-500/30 text-white;
+  }
+}
+
+/* Component Utilities */
+@layer components {
+  /* Glass Morphism Card */
+  .glass-card {
+    @apply rounded-lg border border-white/20 shadow;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .glass-card-subtle {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+
+  .glass-card-enhanced {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Jungle Background Overlay */
+  .jungle-overlay {
+    @apply relative;
+    background-image: url('/jungle background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .jungle-overlay::before {
+    content: '';
+    @apply absolute inset-0 bg-black/30;
+    backdrop-filter: blur(2px);
+  }
+
+  .jungle-overlay > * {
+    @apply relative z-10;
+  }
+
+  /* Jungle Button (special variant with background) */
+  .jungle-button {
+    background-image: url('/jungle background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .jungle-button::before {
+    content: '';
+    @apply absolute inset-0 bg-black/40 rounded-md;
+    z-index: 1;
+  }
+
+  .jungle-button > * {
+    @apply relative z-10;
+  }
+
+  /* Text Shadow for Readability */
+  .text-shadow {
+    filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.8));
+  }
+
+  .text-shadow-lg {
+    filter: drop-shadow(0 2px 4px rgb(0 0 0 / 0.9));
+  }
+
+  /* Container */
+  .container-custom {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-narrow {
+    @apply mx-auto max-w-3xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Transitions */
+  .transition-default {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  .transition-slow {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  /* Focus Ring */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent;
+  }
+
+  /* Hover Effects */
+  .hover-lift {
+    @apply transition-transform duration-300 ease-in-out hover:-translate-y-0.5;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-300 ease-in-out hover:scale-105;
+  }
+
+  .hover-emerald {
+    @apply transition-colors duration-200 ease-in-out hover:text-emerald-500;
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  /* Scrollbar Styling */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Backdrop Blur Fallback */
+  @supports not (backdrop-filter: blur(10px)) {
+    .glass-card {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .glass-card-subtle {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .glass-card-enhanced {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  /* Animation Delays */
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+}
+
+/* Loading States */
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: 0.375rem;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    @apply bg-white text-black;
+    background-image: none !important;
+  }
+
+  .glass-card {
+    @apply bg-white border-gray-300;
+    backdrop-filter: none !important;
+  }
+
+  .no-print {
+    @apply hidden;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .glass-card {
+    @apply border-2 border-white;
+  }
+
+  .text-white\/80 {
+    @apply text-white;
+  }
+
+  .text-white\/70 {
+    @apply text-white;
+  }
+}

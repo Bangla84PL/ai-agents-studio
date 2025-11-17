@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  ai-agents-studio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai-agents-studio
+    restart: always
+    environment:
+      # Application
+      - NODE_ENV=production
+      - NEXT_PUBLIC_APP_URL=https://agents.smartcamp.ai
+
+      # Supabase (load from .env file or set here)
+      - NEXT_PUBLIC_SUPABASE_URL=${SUPABASE_URL}
+      - NEXT_PUBLIC_SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      - SUPABASE_JWT_SECRET=${SUPABASE_JWT_SECRET}
+
+      # n8n Integration
+      - N8N_API_URL=${N8N_API_URL:-https://n8n.smartcamp.ai}
+      - N8N_API_KEY=${N8N_API_KEY}
+
+      # Flowise Integration
+      - FLOWISE_API_URL=${FLOWISE_API_URL:-https://flowise.smartcamp.ai}
+      - FLOWISE_API_KEY=${FLOWISE_API_KEY}
+
+      # Gotenberg Integration
+      - GOTENBERG_API_URL=${GOTENBERG_API_URL:-https://gotenberg.smartcamp.ai}
+
+    ports:
+      - "127.0.0.1:3000:3000"
+
+    networks:
+      - traefik
+
+    labels:
+      # Enable Traefik
+      - "traefik.enable=true"
+
+      # HTTP Router
+      - "traefik.http.routers.agents.rule=Host(`agents.smartcamp.ai`)"
+      - "traefik.http.routers.agents.entrypoints=websecure"
+      - "traefik.http.routers.agents.tls.certresolver=letsencrypt"
+
+      # Service
+      - "traefik.http.services.agents.loadbalancer.server.port=3000"
+
+      # Optional: Middleware (uncomment if needed)
+      # - "traefik.http.routers.agents.middlewares=agents-ratelimit"
+      # - "traefik.http.middlewares.agents-ratelimit.ratelimit.average=100"
+      # - "traefik.http.middlewares.agents-ratelimit.ratelimit.burst=50"
+
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  traefik:
+    external: true
