@@ -9,7 +9,7 @@ import { executeAgentSchema } from '@/lib/validators/agent'
 export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params
-    const supabase = await createClient()
+    const supabase = createClient()
 
     // Verify authentication
     const {
@@ -104,7 +104,7 @@ async function executeAgent(
   agent: any,
   inputData: Record<string, unknown>
 ) {
-  const supabase = await createClient()
+  const supabase = createClient()
 
   try {
     // Update status to running

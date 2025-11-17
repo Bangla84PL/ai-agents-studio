@@ -8,7 +8,7 @@ import { randomBytes } from 'crypto'
  */
 export async function POST(request: Request) {
   try {
-    const supabase = await createClient()
+    const supabase = createClient()
 
     // Verify authentication
     const {

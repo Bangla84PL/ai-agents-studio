@@ -7,7 +7,7 @@ import { createClient } from '@/lib/supabase/server'
  */
 export async function GET(request: Request) {
   try {
-    const supabase = await createClient()
+    const supabase = createClient()
 
     // Verify authentication
     const {
@@ -73,7 +73,7 @@ export async function GET(request: Request) {
  */
 export async function POST(request: Request) {
   try {
-    const supabase = await createClient()
+    const supabase = createClient()
 
     // Verify authentication
     const {

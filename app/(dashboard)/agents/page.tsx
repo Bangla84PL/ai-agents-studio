@@ -7,7 +7,7 @@ import { formatRelativeTime } from '@/lib/utils'
 import type { Agent } from '@/lib/types'
 
 export default async function AgentsPage() {
-  const supabase = await createClient()
+  const supabase = createClient()
 
   const { data: agents, error } = await supabase
     .from('agentsapp_agents')

@@ -1,15 +1,14 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import Link from 'next/link'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { createClient } from '@/lib/supabase/client'
 
-export default function LoginPage() {
-  const router = useRouter()
+function LoginForm() {
   const searchParams = useSearchParams()
   const redirectTo = searchParams.get('redirectTo') || '/dashboard'
 
@@ -174,5 +173,13 @@ export default function LoginPage() {
         </p>
       </CardContent>
     </Card>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="text-white">Loading...</div>}>
+      <LoginForm />
+    </Suspense>
   )
 }

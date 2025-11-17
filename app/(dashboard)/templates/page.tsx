@@ -4,7 +4,7 @@ import { TemplateGrid } from '@/components/templates/TemplateGrid'
 import { TemplateFilters } from '@/components/templates/TemplateFilters'
 
 export default async function TemplatesPage() {
-  const supabase = await createClient()
+  const supabase = createClient()
 
   const {
     data: { user },
