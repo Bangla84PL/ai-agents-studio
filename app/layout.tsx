@@ -1,13 +1,8 @@
 import type { Metadata } from 'next'
-import { Jost } from 'next/font/google'
 import './globals.css'
 
-const jost = Jost({
-  variable: '--font-jost',
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  display: 'swap',
-})
+// Note: Using system fonts as fallback due to build environment restrictions
+// In production, Jost font will be loaded via Google Fonts CDN in globals.css
 
 export const metadata: Metadata = {
   title: {
@@ -81,7 +76,15 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={jost.variable}>
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="min-h-screen">{children}</body>
     </html>
   )

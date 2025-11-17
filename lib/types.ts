@@ -86,10 +86,12 @@ export interface Execution {
   input_data: Record<string, unknown> | null
   output_data: Record<string, unknown> | null
   status: ExecutionStatus
+  trigger_type: string | null
   duration_ms: number | null
   error_message: string | null
   started_at: string
   completed_at: string | null
+  created_at: string
 }
 
 export interface ExecuteAgentInput {
