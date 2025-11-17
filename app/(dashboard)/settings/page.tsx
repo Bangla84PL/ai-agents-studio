@@ -5,7 +5,7 @@ import { ApiKeySettings } from '@/components/settings/ApiKeySettings'
 import { IntegrationSettings } from '@/components/settings/IntegrationSettings'
 
 export default async function SettingsPage() {
-  const supabase = await createClient()
+  const supabase = createClient()
 
   const {
     data: { user },

@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 
 export default async function DashboardPage() {
-  const supabase = await createClient()
+  const supabase = createClient()
 
   // Fetch dashboard stats
   const { data: agents } = await supabase

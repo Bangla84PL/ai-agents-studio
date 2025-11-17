@@ -12,7 +12,7 @@ interface ExecutionPageProps {
 
 export default async function ExecutionPage({ params }: ExecutionPageProps) {
   const { id } = await params
-  const supabase = await createClient()
+  const supabase = createClient()
 
   // Verify authentication
   const {

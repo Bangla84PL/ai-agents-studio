@@ -13,7 +13,7 @@ interface AgentPageProps {
 
 export default async function AgentPage({ params }: AgentPageProps) {
   const { id } = await params
-  const supabase = await createClient()
+  const supabase = createClient()
 
   // Verify authentication
   const {

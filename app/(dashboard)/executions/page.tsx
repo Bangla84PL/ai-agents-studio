@@ -4,7 +4,7 @@ import { ExecutionList } from '@/components/executions/ExecutionList'
 import { ExecutionFilters } from '@/components/executions/ExecutionFilters'
 
 export default async function ExecutionsPage() {
-  const supabase = await createClient()
+  const supabase = createClient()
 
   const {
     data: { user },
