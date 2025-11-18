@@ -46,4 +46,4 @@ VPS_CONFIGURATION_GUIDE.md
 DEPLOYMENT.md
 
 # Supabase migrations (run separately)
-supabase/
+/supabase/
